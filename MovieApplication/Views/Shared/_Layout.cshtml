@@ -6,8 +6,11 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
           
             <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
         <link href="~/Content/Site.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+
+  
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -28,11 +31,85 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <nav class="navbar navbar-default">
+            <div class="nav nav-justified navbar-nav">
+
+                <div class="navbar-form navbar-search" role="search">
+                    <div class="input-group">
+                        <input type="text" id="searchMovie" class="form-control"  />
+                        <div class="input-group-btn">
+                            <button id="btnSubmit" type="button" class="btn btn-search btn-info" onclick="javascript:getMovies();">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="label-icon">Search</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div id="content-block">
+            <div class="content-center fixed-header-margin">
+                <div class="content-push">
+                    <div class="information-blocks">
+                        <div class="row">
+                            <div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4">
+                                <div class="page-selector">
+                                    <div class="shop-grid-controls">
+                                        <div class="entry">
+                                            <div class="inline-text">Sorty by</div>
+                                            <div class="simple-drop-down">
+                                                <select id="drpdownSortBy">
+                                                    <option>Position</option>
+                                                    <option>Release Date</option>
+                                                    <option>Rating</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="row shop-grid grid-view">
+
+                                    @RenderBody()
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
+                                <div class="information-blocks categories-border-wrapper">
+                                    <div class="block-title size-3">Categories</div>
+                                    <div class="accordeon">
+                                        <div class="accordeon-title genre-accordeon">Genre</div>
+                                        <div class="accordeon-entry">
+                                            <div class="article-container style-1" id="genreDiv">
+                                                <ul></ul>
+                                            </div>
+                                        </div>
+                                        <div class="accordeon-title" onclick="getMovieByCategories('top_rated')">Top Rated</div>
+                                        <div class="accordeon-title" onclick="getMovieByCategories('now_playing')">Now Playing</div>
+                                        <div class="accordeon-title"onclick="getMovieByCategories('popular')">Popular</div>
+                                        <div class="accordeon-title" onclick="getMovieByCategories('upcoming')">Upcoming Movies</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FOOTER -->
+                    <div class="footer-wrapper style-10">
+                        <footer class="type-1">
+                            <div class="footer-bottom-navigation">
+                                <div class="cell-view">
+                                  
+                                    <div class="copyright"> Created by Sujan Prajapati</div>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
